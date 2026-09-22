@@ -13,6 +13,7 @@ Uso libre para la comunidad radioaficionada. No se permite la venta de estos arc
 | `Repetidores_PR_CHIRP_noDMR.csv` | Todos los repetidores analógicos (FM / Fusion) en 2 m y 70 cm — 198 canales |
 | `Simplex_PR_CHIRP.csv` | Canales simplex (2 m, 1.25 m, 70 cm) |
 | `Repetidores_PR_CHIRP_DMR.csv` | Solo repetidores DMR |
+| `PR_Airports_CHIRP.csv` | AirBand PR Airports | 
 
 **Por zona (analógico)**
 
