@@ -39,8 +39,17 @@
   .gh svg{width:17px; height:17px; fill:currentColor}
 
   /* tuning-dial divider (the one signature flourish) */
-  .dial{height:26px; background:var(--panel); border-bottom:1px solid var(--line)}
+  .dial{position:relative; height:26px; background:var(--panel); border-bottom:1px solid var(--line)}
   .dial svg{display:block; width:100%; height:26px}
+  /* labels live outside the stretched SVG so they never get squashed */
+  .dial-labels{position:absolute; inset:0; margin:0; font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px; line-height:1; color:#7A8691; pointer-events:none}
+  .dial-labels span{position:absolute; top:3px}
+  /* one-time tuning sweep: needle settles on the 144 MHz tick */
+  .dial-needle{position:absolute; top:13px; bottom:1px; width:2px; border-radius:1px;
+    left:calc(2.33% - 1px); background:var(--accent);
+    animation:dial-sweep 1.2s cubic-bezier(.22,1,.36,1) .2s backwards}
+  @keyframes dial-sweep{from{left:calc(97% - 1px)}}
 
   /* intro */
   .intro{padding:38px 0 26px}
@@ -89,7 +98,7 @@
     .gh span{display:none} .gh{padding:8px}
   }
   :focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:3px}
-  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important} .dial-needle{animation:none}}
 </style>
 </head>
 <body>
@@ -131,11 +140,9 @@
       <line x1="780" y1="18" x2="780" y2="24"/><line x1="800" y1="18" x2="800" y2="24"/>
       <line x1="820" y1="18" x2="820" y2="24"/><line x1="840" y1="16" x2="840" y2="24"/>
     </g>
-    <g fill="#8A96A1" font-family="'IBM Plex Mono',monospace" font-size="8">
-      <text x="20" y="10">144</text><text x="260" y="10">220</text>
-      <text x="500" y="10">440</text><text x="740" y="10">MHz</text>
-    </g>
   </svg>
+  <span class="dial-needle" aria-hidden="true"></span>
+  <p class="dial-labels" aria-hidden="true"><span style="left:2.33%">144</span><span style="left:30.23%">220</span><span style="left:58.14%">440</span><span style="left:86.05%">MHz</span></p>
 </div>
 
 <main class="wrap">
