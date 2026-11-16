@@ -6,15 +6,14 @@
 <title>Repetidores Coordinados — Puerto Rico e Islas Vírgenes</title>
 <meta name="description" content="Archivos de programación para radioaficionados: repetidores coordinados de Puerto Rico e Islas Vírgenes, listos para CHIRP.">
 <link rel="canonical" href="https://pr-vi-repeaters.sirhome.org/">
-<!-- ▼ CAMBIA esta URL por la de tu repositorio ▼ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F3F5F7; --panel:#FFFFFF; --ink:#17232E; --muted:#5A6875;
-    --line:#DBE1E7; --accent:#0C5A87; --accent-soft:#E7EEF4; --on:#2E9E5B;
-    --amber:#A9701A;
+    --line:#DBE1E7; --accent:#0C5A87; --accent-soft:#E7EEF4;
+    --amber:#8A5A12;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
@@ -48,21 +47,25 @@
   h1{font-size:1.72rem; line-height:1.2; margin:0 0 12px; font-weight:700; max-width:20ch}
   .intro p{margin:0 0 10px; max-width:64ch; color:#23303b}
   .status{color:var(--muted); font-size:.92rem; margin-top:14px}
-  .status .live{display:inline-block; width:8px; height:8px; border-radius:50%;
-    background:var(--on); margin-right:7px; vertical-align:middle}
 
   /* file groups */
   .group{margin:0 0 30px}
   h2{font-size:1.06rem; font-weight:600; margin:26px 0 4px; padding-bottom:8px;
      border-bottom:2px solid var(--ink)}
-  .list{background:var(--panel); border:1px solid var(--line); border-top:none}
+  .list{background:var(--panel); border:1px solid var(--line); border-top:none;
+        list-style:none; margin:0; padding:0}
+  .note{color:var(--muted); font-size:.9rem; margin:8px 0 10px; max-width:64ch}
+  .steps{margin:12px 0 0; padding-left:1.4em; max-width:64ch}
+  .steps li{margin:0 0 8px; padding-left:4px}
+  .steps code{font-size:.88em; background:var(--accent-soft); padding:1px 5px; border-radius:4px}
+  .vh{position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0;
+      overflow:hidden; clip-path:inset(50%); white-space:nowrap}
   .row{display:flex; align-items:center; gap:16px; padding:13px 16px;
        border-top:1px solid var(--line)}
   .row:first-child{border-top:none}
   .info{flex:1 1 auto; min-width:0}
-  .fname{font-family:"IBM Plex Mono",monospace; font-size:.9rem; color:var(--accent);
-         font-weight:500; word-break:break-all; text-decoration:none}
-  .fname:hover{text-decoration:underline}
+  .fname{font-family:"IBM Plex Mono",monospace; font-size:.9rem; color:var(--ink);
+         font-weight:500; word-break:break-all}
   .desc{color:var(--muted); font-size:.9rem; margin-top:2px}
   .size{font-family:"IBM Plex Mono",monospace; font-size:.82rem; color:var(--muted);
         flex:0 0 auto; width:64px; text-align:right}
@@ -94,8 +97,7 @@
 <header>
   <div class="wrap mast">
     <span class="mark">Repetidores <span class="call">PR · VI</span></span>
-    <!-- ▼ CAMBIA la URL del repositorio aquí ▼ -->
-    <a class="gh" href="https://github.com/SirMelendezTech/pr-vi-repeaters" target="_blank" rel="noopener">
+    <a class="gh" href="https://github.com/SirMelendezTech/pr-vi-repeaters" aria-label="GitHub">
       <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       <span>GitHub</span>
     </a>
@@ -141,53 +143,90 @@
   <section class="intro">
     <h1>Directorio de Repetidores Coordinados</h1>
     <p>Archivos de programación para radioaficionados en Puerto Rico
-       e Islas Vírgenes, listos para importar en CHIRP. Cubren las
-       bandas de 2&nbsp;metros, 70&nbsp;cm y 1.25&nbsp;m con los repetidores coordinados por el
-       <a href="https://prvi-vfc.org/web/directorio-de-repetidores-coordinados/" target="_blank" rel="noopener">PRVIVFC</a>.</p>
+       e Islas Vírgenes, listos para importar en CHIRP. Incluyen los
+       repetidores coordinados por el
+       <a href="https://prvi-vfc.org/web/directorio-de-repetidores-coordinados/">PRVIVFC</a>
+       en 2&nbsp;metros y 70&nbsp;cm, y los canales simplex de 2&nbsp;m, 1.25&nbsp;m y 70&nbsp;cm.</p>
     <p>Uso libre para la comunidad radioaficionada. No se permite la venta de estos archivos.</p>
-    <p class="status"><span class="live"></span>Edición del directorio 2026–2027 · datos analógicos verificados contra la lista oficial.</p>
+    <p class="status">Edición del directorio 2026–2027. Datos analógicos verificados contra la lista oficial; archivos actualizados el 22 de septiembre de 2026.</p>
   </section>
 
   <section class="group">
     <h2>Codeplugs CHIRP</h2>
-    <div class="list">
-      <div class="row">
-        <div class="info">
-          <a class="fname" href="Repetidores_PR_CHIRP_noDMR.csv" download>Repetidores_PR_CHIRP_noDMR.csv</a>
-          <div class="desc">Todos los repetidores analógicos (FM / Fusion) en 2&nbsp;m y 70&nbsp;cm — 198 canales.</div>
-        </div>
+    <ul class="list">
+      <li class="row">
+        <div class="info"><span class="fname">Repetidores_PR_CHIRP_noDMR.csv</span><div class="desc">Todos los repetidores analógicos (FM / Fusion) en 2&nbsp;m y 70&nbsp;cm — 198 canales.</div></div>
         <span class="size">26 KB</span>
-        <a class="dl" href="Repetidores_PR_CHIRP_noDMR.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a>
-      </div>
-      <div class="row">
-        <div class="info">
-          <a class="fname" href="Repetidores_PR_CHIRP_DMR.csv" download>Repetidores_PR_CHIRP_DMR.csv</a>
-          <div class="desc">Solo repetidores DMR (Color Code, Time Slot y Talkgroup en los comentarios) — 21 canales.</div>
-        </div>
+        <a class="dl" href="Repetidores_PR_CHIRP_noDMR.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Repetidores_PR_CHIRP_noDMR.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Repetidores_PR_CHIRP_DMR.csv</span><div class="desc">Solo repetidores DMR (Color Code, Time Slot y Talkgroup en los comentarios) — 21 canales.</div></div>
         <span class="size">3 KB</span>
-        <a class="dl" href="Repetidores_PR_CHIRP_DMR.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a>
-      </div>
-      <div class="row">
-        <div class="info">
-          <a class="fname" href="Simplex_PR_CHIRP.csv" download>Simplex_PR_CHIRP.csv</a>
-          <div class="desc">Canales simplex del band plan en 2&nbsp;m, 1.25&nbsp;m y 70&nbsp;cm.</div>
-        </div>
+        <a class="dl" href="Repetidores_PR_CHIRP_DMR.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Repetidores_PR_CHIRP_DMR.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Simplex_PR_CHIRP.csv</span><div class="desc">Canales simplex del band plan en 2&nbsp;m, 1.25&nbsp;m y 70&nbsp;cm — 31 canales.</div></div>
         <span class="size">3 KB</span>
-        <a class="dl" href="Simplex_PR_CHIRP.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a>
-      </div>
-    </div>
+        <a class="dl" href="Simplex_PR_CHIRP.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Simplex_PR_CHIRP.csv</span></a>
+      </li>
+    </ul>
   </section>
 
   <section class="group">
     <h2>Por zona</h2>
-    <div class="list">
-      <div class="row"><div class="info"><a class="fname" href="Norte.csv" download>Norte.csv</a><div class="desc">Repetidores analógicos de la zona norte — 39 canales.</div></div><span class="size">5 KB</span><a class="dl" href="Norte.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-      <div class="row"><div class="info"><a class="fname" href="Sur.csv" download>Sur.csv</a><div class="desc">Repetidores analógicos de la zona sur — 26 canales.</div></div><span class="size">3 KB</span><a class="dl" href="Sur.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-      <div class="row"><div class="info"><a class="fname" href="Este.csv" download>Este.csv</a><div class="desc">Repetidores analógicos de la zona este — 40 canales.</div></div><span class="size">5 KB</span><a class="dl" href="Este.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-      <div class="row"><div class="info"><a class="fname" href="Oeste.csv" download>Oeste.csv</a><div class="desc">Repetidores analógicos de la zona oeste — 28 canales.</div></div><span class="size">3 KB</span><a class="dl" href="Oeste.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-      <div class="row"><div class="info"><a class="fname" href="Centro.csv" download>Centro.csv</a><div class="desc">Repetidores analógicos de la cordillera central — 56 canales.</div></div><span class="size">8 KB</span><a class="dl" href="Centro.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-      <div class="row"><div class="info"><a class="fname" href="IV.csv" download>IV.csv</a><div class="desc">Repetidores analógicos de las Islas Vírgenes — 9 canales.</div></div><span class="size">1 KB</span><a class="dl" href="IV.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar</a></div>
-    </div>
+    <p class="note">Cada zona es una parte de <span class="fname">Repetidores_PR_CHIRP_noDMR.csv</span>. Importa el archivo completo o las zonas que necesites, no ambos: los canales quedarían duplicados.</p>
+    <ul class="list">
+      <li class="row">
+        <div class="info"><span class="fname">Norte.csv</span><div class="desc">Repetidores analógicos de la zona norte — 39 canales.</div></div>
+        <span class="size">5 KB</span>
+        <a class="dl" href="Norte.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Norte.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Sur.csv</span><div class="desc">Repetidores analógicos de la zona sur — 26 canales.</div></div>
+        <span class="size">3 KB</span>
+        <a class="dl" href="Sur.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Sur.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Este.csv</span><div class="desc">Repetidores analógicos de la zona este — 40 canales.</div></div>
+        <span class="size">5 KB</span>
+        <a class="dl" href="Este.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Este.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Oeste.csv</span><div class="desc">Repetidores analógicos de la zona oeste — 28 canales.</div></div>
+        <span class="size">4 KB</span>
+        <a class="dl" href="Oeste.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Oeste.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">Centro.csv</span><div class="desc">Repetidores analógicos de la cordillera central — 56 canales.</div></div>
+        <span class="size">8 KB</span>
+        <a class="dl" href="Centro.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> Centro.csv</span></a>
+      </li>
+      <li class="row">
+        <div class="info"><span class="fname">IV.csv</span><div class="desc">Repetidores analógicos de las Islas Vírgenes — 9 canales.</div></div>
+        <span class="size">1 KB</span>
+        <a class="dl" href="IV.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> IV.csv</span></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2>Banda aérea (solo recepción)</h2>
+    <ul class="list">
+      <li class="row">
+        <div class="info"><span class="fname">PR_Airports_CHIRP.csv</span><div class="desc">Torre, tierra, aproximación, ATIS y UNICOM de SJU, BQN, PSE, RVR e Isla Grande — 40 canales en AM. Incluye canales UHF militares (225–400&nbsp;MHz) que muchos radios no reciben.</div></div>
+        <span class="size">4 KB</span>
+        <a class="dl" href="PR_Airports_CHIRP.csv" download><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5zM3 13h10v2H3z"/></svg>Descargar<span class="vh"> PR_Airports_CHIRP.csv</span></a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="group">
+    <h2>Cómo importar en CHIRP</h2>
+    <ol class="steps">
+      <li>Conecta el radio y lee su configuración actual con <code>Radio → Download From Radio</code>. Guarda ese archivo como respaldo.</li>
+      <li>Abre <code>File → Import</code>, selecciona el CSV descargado y escoge en qué memoria empezar.</li>
+      <li>Revisa los canales importados y grábalos con <code>Radio → Upload To Radio</code>.</li>
+    </ol>
   </section>
 
 </main>
@@ -195,7 +234,7 @@
 <footer>
   <div class="wrap">
     <p>Datos del directorio de repetidores coordinados del
-       <a href="https://prvi-vfc.org/web/directorio-de-repetidores-coordinados/" target="_blank" rel="noopener">PRVIVFC</a>,
+       <a href="https://prvi-vfc.org/web/directorio-de-repetidores-coordinados/">PRVIVFC</a>,
        entidad coordinadora de Puerto Rico e Islas Vírgenes.</p>
     <p>Mantenido por <span class="call">WP4TZV</span>. Recurso gratuito, sin fines de lucro.</p>
   </div>
